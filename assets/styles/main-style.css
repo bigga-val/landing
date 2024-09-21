@@ -1,0 +1,410 @@
+body {
+
+    font-family: Arial, sans-serif;
+
+}
+
+.navbar {
+
+    background-color: white;
+
+}
+
+.navbar-brand {
+
+    font-weight: bold;
+
+    color: #00796b;
+
+}
+
+.navbar-brand img {
+
+    height: 40px;
+
+}
+
+.nav-link {
+    color: #333;
+}
+
+.hero {
+    background-color: white;
+    padding: 2rem 0;
+}
+
+h1 {
+    color: #333;
+    font-weight: bold;
+}
+
+.highlight {
+    color: #00796b;
+}
+
+.btn-primary {
+    background-color: #00796b;
+    border-color: #00796b;
+}
+
+.btn-primary:hover {
+    background-color: #005a4f;
+    border-color: #005a4f;
+}
+
+.hero-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-image {
+    position: relative;
+    height: 650px;
+
+    overflow: hidden;
+}
+
+.triangle-background {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 140%;
+    height: 110%;
+    z-index: 1;
+}
+
+.home-girl {
+    position: relative;
+    z-index: 2;
+    max-width: 100%;
+    height: auto;
+}
+
+.whatsapp-button {
+    position: absolute;
+    bottom: 30px;
+    right: 160px;
+    background-color: #25D366;
+    color: white;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    text-decoration: none;
+    z-index: 3;
+}
+
+.social-icons {
+    display: flex;
+    align-items: center;
+}
+
+.social-icons a {
+    color: #333;
+    margin-right: 10px;
+    font-size: 1.4rem;
+    text-decoration: none;
+}
+
+.social-icons a:last-child {
+    margin-right: 0;
+}
+
+.hero .col-lg-6:first-child {
+    margin-top: 100px;
+
+}
+
+.social-and-powered {
+    margin-top: 80px !important;
+
+}
+
+.btn-longer {
+    width: 150px;
+
+    padding-left: 10px;
+
+    padding-right: 10px;
+
+}
+
+
+
+@media (max-width: 991px) {
+    .hero .col-lg-6:first-child {
+        margin-top: 50px;
+    }
+
+    .hero-image {
+        height: 450px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .home-girl {
+        position: relative;
+        z-index: 2;
+        max-width: 80%;
+        height: auto;
+        left: 30%;
+        bottom: 25%;
+
+    }
+
+    .whatsapp-button {
+        width: 60px;
+        height: 60px;
+        font-size: 30px;
+        right: 5%;
+        bottom: 10%;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-image {
+        height: 470px;
+    }
+
+    .whatsapp-button {
+        width: 60px;
+        height: 60px;
+        font-size: 30px;
+        right: 5%;
+        bottom: 10%;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .home-girl {
+        position: relative;
+        z-index: 2;
+        max-width: 80%;
+        height: auto;
+        left: 30%;
+        bottom: 20%;
+
+    }
+
+    .align-text {
+        text-align: justify;
+
+    }
+
+    .align-text h1,
+    .align-text h6,
+    .align-text p {
+        text-align: justify;
+
+    }
+
+    .align-text {
+        text-align: justify;
+
+    }
+
+    .align-text button {
+        display: block;
+        margin: 0 auto;
+    }
+
+    .align-text h1 {
+        text-align: center;
+
+    }
+
+
+    .navbar {
+        background-color: #f0f0f0;
+
+    }
+
+
+    .navbar-toggler {
+        border: none;
+
+    }
+
+
+    .navbar-toggler-icon {
+        background-image: url('data:image/svg+xml;charset=utf8,%3Csvg xmlns%3D%22http://www.w3.org/2000/svg%22 viewBox%3D%220 0 30 30%22%3E%3Cpath stroke%3D%22black%22 stroke-width%3D%223%22 stroke-linecap%3D%22round%22 stroke-miterlimit%3D%2210%22 d%3D%22M4 7h22M4 15h22M4 23h22%22/%3E%3C/svg%3E');
+
+    }
+
+
+    .navbar-brand img {
+        width: 90px;
+        height: 40px;
+
+        margin-left: 15px;
+
+    }
+}
+
+@media (max-width: 575px) {
+    .hero-image {
+        height: 270px;
+    }
+
+    .social-and-powered {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .social-icons {
+        margin-bottom: 10px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .home-girl {
+        position: relative;
+        z-index: 2;
+        max-width: 80%;
+        height: auto;
+        left: 30%;
+        bottom: 7%;
+
+    }
+
+    .whatsapp-button {
+        width: 40px;
+        height: 40px;
+        font-size: 24px;
+        right: 5%;
+        bottom: 5%;
+    }
+
+    .align-text {
+        text-align: justify;
+
+    }
+
+    .align-text h1,
+    .align-text h6,
+    .align-text p {
+        text-align: justify;
+
+    }
+
+    .align-text {
+        text-align: justify;
+
+    }
+
+    .align-text button {
+        display: block;
+
+        margin: 0 auto;
+
+    }
+
+    .align-text h1 {
+        text-align: center;
+
+    }
+
+
+    .navbar {
+        background-color: #f0f0f0;
+
+    }
+
+
+    .navbar-toggler {
+        border: none;
+
+    }
+
+
+    .navbar-toggler-icon {
+        background-image: url('data:image/svg+xml;charset=utf8,%3Csvg xmlns%3D%22http://www.w3.org/2000/svg%22 viewBox%3D%220 0 30 30%22%3E%3Cpath stroke%3D%22black%22 stroke-width%3D%223%22 stroke-linecap%3D%22round%22 stroke-miterlimit%3D%2210%22 d%3D%22M4 7h22M4 15h22M4 23h22%22/%3E%3C/svg%3E');
+
+    }
+
+
+    .navbar-brand img {
+        width: 90px;
+        height: 40px;
+
+        margin-left: 15px;
+
+    }
+
+}
+
+@media (max-width: 992px) {}
+
+@media (max-width: 820px) {
+    .whatsapp-button {
+        width: 80px;
+        height: 80px;
+        font-size: 50px;
+        right: 5%;
+        bottom: 5%;
+    }
+
+    .align-text {
+        text-align: justify;
+
+    }
+
+    .align-text h1,
+    .align-text h6,
+    .align-text p {
+        text-align: justify;
+    }
+
+    .align-text {
+        text-align: justify;
+
+    }
+
+    .align-text button {
+        display: block;
+
+        margin: 0 auto;
+
+    }
+
+    .align-text h1 {
+        text-align: center;
+
+    }
+
+
+    .navbar {
+        background-color: #f0f0f0;
+
+    }
+
+
+    .navbar-toggler {
+        border: none;
+
+    }
+
+
+    .navbar-toggler-icon {
+        background-image: url('data:image/svg+xml;charset=utf8,%3Csvg xmlns%3D%22http://www.w3.org/2000/svg%22 viewBox%3D%220 0 30 30%22%3E%3Cpath stroke%3D%22black%22 stroke-width%3D%223%22 stroke-linecap%3D%22round%22 stroke-miterlimit%3D%2210%22 d%3D%22M4 7h22M4 15h22M4 23h22%22/%3E%3C/svg%3E');
+
+    }
+
+
+    .navbar-brand img {
+        width: 90px;
+        height: 40px;
+
+        margin-left: 15px;
+
+    }
+}

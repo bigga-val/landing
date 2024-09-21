@@ -1,0 +1,211 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}e-TAX : La solution pour une gestion fiscale moderne et efficace!{% endblock %}
+
+{% block body %}
+   
+<style>
+    .text-highlight {
+        color: #008080;
+    }
+    .btn-teal {
+        background-color: #008080;
+        color: white;
+    }
+    .social-icons img {
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
+    }
+   
+    .main-content {
+        display: flex;
+        align-items: stretch;
+        min-height: calc(100vh - 76px - 60px);
+    }
+    .image-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+    .background-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+    .content-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+        padding: 5%;
+    }
+    .content-wrapper p {
+        text-align: justify;
+    }
+    .social-icon {
+        font-size: 24px;
+        color: #000000;
+        margin-right: 15px;
+    }
+    .whatsapp-container {
+        position: fixed;
+        bottom: 70px;
+        right: 20px;
+        z-index: 1000;
+    }
+    .whatsapp-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 60px;
+        height: 60px;
+        background-color: #25D366;
+        color: white;
+        border-radius: 50%;
+        text-decoration: none;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+    }
+    .whatsapp-button:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+    }
+    .whatsapp-icon {
+        font-size: 36px; 
+        line-height: 1; 
+    }
+    .pulse {
+        animation: pulse-animation 2s infinite;
+    }
+    @keyframes pulse-animation {
+        0% {
+            box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+        }
+        70% {
+            box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+        }
+        100% {
+            box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+        }
+    }
+    .text-teal {
+        color: #008080;
+    }
+    .navbar-brand img {
+        height: 30px;
+        margin-left: 20px;
+    }
+
+    /* Responsive styles */
+    @media screen and (max-width: 1199px) {
+        .main-content {
+            flex-direction: column;
+            min-height: auto;
+        }
+        .content-wrapper {
+            text-align: center;
+            padding: 2rem;
+        }
+        .content-wrapper p {
+            text-align: justify;
+        }
+        .content-wrapper .btn {
+            margin: 0 auto;
+        }
+        .image-container {
+            min-height: 300px;
+        }
+    }
+
+    @media screen and (min-width: 768px) and (max-width: 1199px) {
+        .image-container {
+            min-height: 400px;
+        }
+    }
+
+    @media screen and (max-width: 991px) {
+        .navbar {
+            background-color: #e8e8e8 !important;
+        }
+        
+        .navbar-toggler {
+            border: none;
+        }
+        
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 0, 0, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+        
+        .navbar-nav .nav-link {
+            color: #000 !important;
+        }
+    }
+
+    @media screen and (max-width: 767px) {
+        .image-container {
+            min-height: 200px;
+        }
+        .content-wrapper {
+            padding: 1.5rem;
+        }
+        .main-content {
+            margin-bottom: -60px; /* Ajustez cette valeur selon la hauteur de votre footer */
+        }
+    }
+</style>
+
+<div class="container-fluid px-0">
+    <div class="row no-gutters main-content">
+        <div class="col-xl-6">
+            <div class="content-wrapper">
+                <h1 class="mb-4">e-TAX : La solution pour une <span class="text-teal">gestion fiscale </span> moderne et
+                    efficace</h1>
+                <p class="mt-4">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
+                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                </p>
+                <p class="mt-4">
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                    nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                    deserunt mollit anim id est laborum.
+                </p>
+                <p class="mt-4">
+                    Cher visiteur, nous vous remercions de l'intérêt que vous avez accordé à notre projet.
+                    Notre équipe travaille d'arrache-pied pour mettre à votre disposition le produit dans les
+                    prochains jours. Soyez le premier à être averti de la mise en ligne du logiciel.
+                </p>
+                <a href="{{ path("app_avertir") }}" class="btn btn-teal align-self-start">M'avertir</a>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="image-container">
+                <img src="{{ asset("images/background-image.png") }}" class="background-image" alt="Background Image">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="whatsapp-container">
+    <a href="https://wa.me/+243992385873" class="whatsapp-button pulse">
+        <i class="fab fa-whatsapp whatsapp-icon"></i>
+    </a>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const whatsappButton = document.querySelector('.whatsapp-button');
+        
+        setInterval(function() {
+            whatsappButton.classList.add('pulse');
+            setTimeout(function() {
+                whatsappButton.classList.remove('pulse');
+            }, 2000);
+        }, 4000);
+    });
+</script>
+
+{% endblock %}

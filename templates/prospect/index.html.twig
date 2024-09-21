@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Prospects{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .prospects-container {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 30px;
+           
+        }
+        .prospects-title {
+            color: #343a40;
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        .prospects-table {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .prospects-table thead {
+            background-color: #008080;
+            color: white;
+        }
+        .prospects-table th {
+            font-weight: 600;
+            text-transform: uppercase;
+            padding: 10px;
+        }
+        .prospects-table td {
+            padding: 12px 15px;
+            vertical-align: middle;
+        }
+        .prospects-table tbody tr:nth-child(even) {
+            background-color: #f1f3f5;
+        }
+        .prospects-table tbody tr:hover {
+            background-color: #e9ecef;
+            transition: background-color 0.3s ease;
+        }
+        .no-records {
+            text-align: center;
+            padding: 20px;
+            font-style: italic;
+            color: #6c757d;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid mt-5 mb-5">
+    <div class="prospects-container">
+        <h1 class="prospects-title">Liste des Prospects</h1>
+{#{{ dump(app.user) }}#}
+        <div class="table-responsive">
+            <table class="table table-hover prospects-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nom</th>
+                        <th>Ville</th>
+                        <th>Téléphone</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% set counter = 0 %}
+                {% for prospect in prospects %}
+                    {% set counter = counter + 1 %}
+                    <tr>
+                        <td>{{ counter }}</td>
+                        <td>{{ prospect.nom }}</td>
+                        <td>{{ prospect.ville }}</td>
+                        <td>{{ prospect.telephone }}</td>
+                        <td>{{ prospect.email }}</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="5" class="no-records">Aucun enregistrement trouvé</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

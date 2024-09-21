@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Prospect{% endblock %}
+
+{% block body %}
+    <h1>Prospect</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ prospect.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ prospect.nom }}</td>
+            </tr>
+            <tr>
+                <th>Ville</th>
+                <td>{{ prospect.ville }}</td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td>{{ prospect.telephone }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ prospect.email }}</td>
+            </tr>
+            <tr>
+                <th>Status_tbl</th>
+                <td>{{ prospect.statusTbl }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ prospect.createdAt ? prospect.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_prospect_index') }}">back to list</a>
+
+    <a href="{{ path('app_prospect_edit', {'id': prospect.id}) }}">edit</a>
+
+    {{ include('prospect/_delete_form.html.twig') }}
+{% endblock %}

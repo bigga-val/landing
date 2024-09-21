@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau Prospect{% endblock %}
+
+{% block body %}
+<div class="prospect-form-container">
+    <h2 class="form-title">Enregistrement d'un nouveau prospect</h2>
+    
+    {{ form_start(form, {'attr': {'class': 'prospect-form'}}) }}
+    
+    <div class="form-group">
+        <label for="{{ form.nom.vars.id }}" class="form-label">Nom Complet *</label>
+        {{ form_widget(form.nom, {'attr': {'class': 'form-control', 'required':'required'}}) }}
+    </div>
+    
+    <div class="form-group">
+        <label for="{{ form.ville.vars.id }}" class="form-label">Ville * </label>
+        {{ form_widget(form.ville, {'attr': {'class': 'form-control', 'required':'required'}}) }}
+    </div>
+    
+    <div class="form-group">
+        <label for="{{ form.telephone.vars.id }}" class="form-label">Numéro de téléphone *</label>
+        {{ form_widget(form.telephone, {'attr': {'class': 'form-control', 'required':'required'}}) }}
+    </div>
+    
+    <div class="form-group">
+        <label for="{{ form.email.vars.id }}" class="form-label">Email *</label>
+        {{ form_widget(form.email, {'attr': {'class': 'form-control', 'required':'required'}}) }}
+    </div>
+
+    <button type="submit" class="submit-btn">{{ button_label|default('Enregistrer') }}</button>
+    
+    {{ form_end(form) }}
+</div>
+
+<style>
+    .prospect-form-container {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 8px;
+    }
+
+    .form-title {
+        text-align: center;
+        color: #333;
+        margin-bottom: 30px;
+        font-size: 24px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-label {
+        display: block;
+        margin-bottom: 0px;
+        color: #555;
+        font-size: 14px;
+    }
+
+    .form-control:focus {
+        outline: none;
+        border-color: #008080;
+    }
+
+    .submit-btn {
+        width: 100%;
+        padding: 12px;
+        background-color: #008080;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .submit-btn:hover {
+        background-color: #006666;
+    }
+</style>
+{% endblock %}
