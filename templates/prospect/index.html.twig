@@ -8,19 +8,20 @@
         .prospects-container {
             background-color: #f8f9fa;
             border-radius: 10px;
-            padding: 30px;
-           
+            padding: 20px;
+            margin-top: 20px;
         }
         .prospects-title {
             color: #343a40;
             font-size: 1.5rem;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             text-align: left;
         }
         .prospects-table {
             background-color: white;
             border-radius: 8px;
             overflow: hidden;
+            width: 100%;
         }
         .prospects-table thead {
             background-color: #008080;
@@ -48,17 +49,75 @@
             font-style: italic;
             color: #6c757d;
         }
+        .search-container {
+            margin-bottom: 20px;
+            max-width: 300px;
+        }
+        #searchInput {
+            width: 100%;
+            padding: 8px;
+
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 767px) {
+            .prospects-container {
+                padding: 10px;
+            }
+            .prospects-title {
+                font-size: 1.2rem;
+                margin-bottom: 15px;
+            }
+            .prospects-table {
+                font-size: 0.9rem;
+            }
+            .prospects-table thead {
+                display: none;
+            }
+            .prospects-table, .prospects-table tbody, .prospects-table tr, .prospects-table td {
+                display: block;
+                width: 100%;
+            }
+            .prospects-table tr {
+                margin-bottom: 15px;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                overflow: hidden;
+            }
+            .prospects-table td {
+                text-align: right;
+                padding-left: 50%;
+                position: relative;
+            }
+            .prospects-table td:before {
+                content: attr(data-label);
+                position: absolute;
+                left: 6px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+                font-weight: bold;
+                text-align: left;
+            }
+            .search-container {
+                max-width: 100%;
+            }
+        }
     </style>
 {% endblock %}
 
 {% block body %}
-<div class="container-fluid mt-5 mb-5">
-    <div class="prospects-container">
-        <h1 class="prospects-title">Liste des Prospects</h1>
-{#{{ dump(app.user) }}#}
-        <div class="table-responsive">
-            <table class="table table-hover prospects-table">
-                <thead>
+    <div class="container-fluid mt-3 mb-3">
+        <div class="prospects-container">
+            <h1 class="prospects-title">Liste des Prospects</h1>
+
+            <div class="search-container">
+                <input type="text" id="searchInput" class="form-control" placeholder="Rechercher un prospect...">
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-hover prospects-table">
+                    <thead>
                     <tr>
                         <th>#</th>
                         <th>Nom</th>
@@ -66,26 +125,61 @@
                         <th>Téléphone</th>
                         <th>Email</th>
                     </tr>
-                </thead>
-                <tbody>
-                {% set counter = 0 %}
-                {% for prospect in prospects %}
-                    {% set counter = counter + 1 %}
-                    <tr>
-                        <td>{{ counter }}</td>
-                        <td>{{ prospect.nom }}</td>
-                        <td>{{ prospect.ville }}</td>
-                        <td>{{ prospect.telephone }}</td>
-                        <td>{{ prospect.email }}</td>
-                    </tr>
-                {% else %}
-                    <tr>
-                        <td colspan="5" class="no-records">Aucun enregistrement trouvé</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody id="prospectsTableBody">
+                    {% set counter = 0 %}
+                    {% for prospect in prospects %}
+                        {% set counter = counter + 1 %}
+                        <tr>
+                            <td data-label="#">{{ counter }}</td>
+                            <td data-label="Nom">{{ prospect.nom }}</td>
+                            <td data-label="Ville">{{ prospect.ville }}</td>
+                            <td data-label="Téléphone">{{ prospect.telephone }}</td>
+                            <td data-label="Email">{{ prospect.email }}</td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="5" class="no-records">Aucun enregistrement trouvé</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-</div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const tableBody = document.getElementById('prospectsTableBody');
+            const rows = tableBody.getElementsByTagName('tr');
+
+            searchInput.addEventListener('keyup', function() {
+                const searchTerm = searchInput.value.toLowerCase();
+
+                for (let i = 0; i < rows.length; i++) {
+                    const row = rows[i];
+                    const cells = row.getElementsByTagName('td');
+                    let found = false;
+
+                    for (let j = 0; j < cells.length; j++) {
+                        const cellText = cells[j].textContent.toLowerCase();
+                        if (cellText.indexOf(searchTerm) > -1) {
+                            found = true;
+                            break;
+                        }
+                    }
+
+                    if (found) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                }
+            });
+        });
+    </script>
 {% endblock %}

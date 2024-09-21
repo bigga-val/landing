@@ -35,7 +35,7 @@ final class ProspectController extends AbstractController{
             $entityManager->persist($prospect);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('prospect/new.html.twig', [
