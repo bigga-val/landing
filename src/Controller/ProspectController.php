@@ -44,6 +44,28 @@ final class ProspectController extends AbstractController{
         ]);
     }
 
+    #[Route('/newbyemail', name: 'app_prospect_new_email', methods: ['GET', 'POST'])]
+    public function newbyemail(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $prospect = new Prospect();
+        $form = $this->createForm(ProspectType::class, $prospect);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $prospect->setCreatedAt(new \DateTimeImmutable);
+            $prospect->setStatusTbl(1);
+            $entityManager->persist($prospect);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('prospect/newbyemail.html.twig', [
+            'prospect' => $prospect,
+            'form' => $form,
+        ]);
+    }
+
     #[Route('/{id}', name: 'app_prospect_show', methods: ['GET'])]
     public function show(Prospect $prospect): Response
     {

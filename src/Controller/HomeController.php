@@ -13,6 +13,7 @@ class HomeController extends AbstractController
     {
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
+            'isActive' => 'accueil'
         ]);
     }
 
@@ -21,6 +22,7 @@ class HomeController extends AbstractController
     {
         return $this->render('home/avertir.html.twig', [
             'controller_name' => 'HomeController',
+            'isActive' => 'avertir'
         ]);
     }
 
@@ -29,6 +31,7 @@ class HomeController extends AbstractController
     {
         return $this->render('home/contact.html.twig', [
             'controller_name' => 'HomeController',
+            'isActive' => 'contact'
         ]);
     }
 
@@ -37,6 +40,7 @@ class HomeController extends AbstractController
     {
         return $this->render('home/apropos.html.twig', [
             'controller_name' => 'HomeController',
+            'isActive' => 'apropos'
         ]);
     }
 }

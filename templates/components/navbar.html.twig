@@ -1,4 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <input type="text" value="{{ isActive }}" id="isActive">
         <div class="container-fluid">
             <a class="navbar-brand d-flex align-items-center" href="#">
                 <img src="{{ asset("images/logo-e.png") }}" alt="e-TAX logo">
@@ -8,19 +9,19 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
+                    <li class="nav-item" id="accueil">
                         <a class="nav-link" href="{{ path("app_home") }}">Accueil</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" id="apropos">
                         <a class="nav-link" href="{{ path("app_apropos") }}">À propos</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" id="contact">
                         <a class="nav-link" href="{{ path("app_contact") }}">Contacts</a>
                     </li>
 {#                    {{ dump(app.user) }}#}
 
                     {% if app.user %}
-                        <li class="nav-item">
+                        <li class="nav-item" id="prospect">
                             <a class="nav-link" href="{{ path("app_prospect_index") }}">Prospect</a>
                         </li>
 
@@ -29,7 +30,7 @@
                         </li>
                     {% else %}
 
-                        <li class="nav-item">
+                        <li class="nav-item" id="login">
                             <a class="nav-link" href="{{ path("app_login") }}">Login</a>
                         </li>
                     {% endif %}
@@ -38,3 +39,6 @@
             </div>
         </div>
     </nav>
+<script>
+
+</script>

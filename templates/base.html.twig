@@ -22,7 +22,10 @@
             height: 30px;
             margin-left: 20px;
         }
-        
+        .active{
+            background-color: #25D366;
+            color: white;
+        }
         </style>
         <style>
     footer {
@@ -145,4 +148,16 @@
         </div>
     </div>
     </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $(document).ready(function(e){
+            var isActive = $("#isActive").val()
+            $(".nav-item").each(function() {
+                var idActuel = $(this).attr("id");
+                if (idActuel === isActive) {
+                    $(this).addClass("active");
+                }
+            });
+        })
+    </script>
 </html>

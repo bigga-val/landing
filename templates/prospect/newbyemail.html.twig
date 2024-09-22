@@ -4,7 +4,7 @@
 
 {% block body %}
 <div class="prospect-form-container">
-    <h2 class="form-title">M'avertir en tant par Whatsapp</h2>
+    <h2 class="form-title">M'avertir en tant que :</h2>
     
     {{ form_start(form, {'attr': {'class': 'prospect-form'}}) }}
     
@@ -17,16 +17,16 @@
         <label for="{{ form.ville.vars.id }}" class="form-label">Ville * </label>
         {{ form_widget(form.ville, {'attr': {'class': 'form-control', 'required':'required'}}) }}
     </div>
+{#    #}
+{#    <div class="form-group">#}
+{#        <label for="{{ form.telephone.vars.id }}" class="form-label">Numéro de téléphone *</label>#}
+        {{ form_widget(form.telephone, {'attr': {'class': 'form-control', 'hidden':'hidden'}}) }}
+{#    </div>#}
     
     <div class="form-group">
-        <label for="{{ form.telephone.vars.id }}" class="form-label">Numéro de téléphone *</label>
-        {{ form_widget(form.telephone, {'attr': {'class': 'form-control', 'required':'required'}}) }}
+        <label for="{{ form.email.vars.id }}" class="form-label">Email *</label>
+        {{ form_widget(form.email, {'attr': {'class': 'form-control', 'required':'required'}}) }}
     </div>
-
-{#    <div class="form-group">#}
-{#        <label for="{{ form.email.vars.id }}" class="form-label">Email *</label>#}
-        {{ form_widget(form.email, {'attr': {'class': 'form-control', 'hidden':'hidden'}}) }}
-{#    </div>#}
 
     <button type="submit" class="submit-btn">{{ button_label|default('Enregistrer') }}</button>
     
