@@ -1,4 +1,10 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+{#    {{ form_widget(form) }}#}
+
+{#                {{ form_start(form, {'attr': {'class': 'prospect-form'}}) }}#}
+
+<div class="form-group">
+    {{ form_widget(form.nom, {'attr': {'class': 'form-control', 'required':'required'}}) }}
+</div>
     <button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}

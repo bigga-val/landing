@@ -1,0 +1,196 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des messages{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .prospects-container {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .prospects-title {
+            color: #343a40;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .prospects-table {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            width: 100%;
+        }
+        .prospects-table thead {
+            background-color: #008080;
+            color: white;
+        }
+        .prospects-table th {
+            font-weight: 600;
+            text-transform: uppercase;
+            padding: 10px;
+        }
+        .prospects-table td {
+            padding: 12px 15px;
+            vertical-align: middle;
+        }
+        .prospects-table tbody tr:nth-child(even) {
+            background-color: #f1f3f5;
+        }
+        .prospects-table tbody tr:hover {
+            background-color: #e9ecef;
+            transition: background-color 0.3s ease;
+        }
+        .no-records {
+            text-align: center;
+            padding: 20px;
+            font-style: italic;
+            color: #6c757d;
+        }
+        .search-container {
+            margin-bottom: 20px;
+            max-width: 300px;
+        }
+        #searchInput {
+            width: 100%;
+            padding: 8px;
+
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 767px) {
+            .prospects-container {
+                padding: 10px;
+            }
+            .prospects-title {
+                font-size: 1.2rem;
+                margin-bottom: 15px;
+            }
+            .prospects-table {
+                font-size: 0.9rem;
+            }
+            .prospects-table thead {
+                display: none;
+            }
+            .prospects-table, .prospects-table tbody, .prospects-table tr, .prospects-table td {
+                display: block;
+                width: 100%;
+            }
+            .prospects-table tr {
+                margin-bottom: 15px;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                overflow: hidden;
+            }
+            .prospects-table td {
+                text-align: right;
+                padding-left: 50%;
+                position: relative;
+            }
+            .prospects-table td:before {
+                content: attr(data-label);
+                position: absolute;
+                left: 6px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+                font-weight: bold;
+                text-align: left;
+            }
+            .search-container {
+                max-width: 100%;
+            }
+        }
+    </style>
+{% endblock %}
+{% block body %}
+<div class="container-fluid mt-3 mb-3">
+    <div class="prospects-container">
+        <h1 class="prospects-title">Liste des Messages</h1>
+
+        <div class="search-container">
+            <input type="text" id="searchInput" class="form-control" placeholder="Rechercher parmi les messages...">
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-hover prospects-table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nom</th>
+                <th>Email</th>
+                <th>Message</th>
+{#                <th>CreatedAt</th>#}
+{#                <th>Status_tbl</th>#}
+{#                <th>actions</th>#}
+            </tr>
+        </thead>
+        <tbody id="prospectsTableBody">
+        {% set counter = 0 %}
+        {% for message in messages %}
+            {% set counter = counter + 1 %}
+            <tr>
+                <td>{{ counter }}</td>
+                <td>{{ message.nom }}</td>
+                <td>{{ message.email }}</td>
+                <td>{{ message.message }}</td>
+{#                <td>#}
+{#                    {% if message.message|length > 20 %}#}
+{#                        {{ message.message|striptags|slice(0, 20) }}...#}
+{#                    {% else %}#}
+{#                        {{ message.message }}#}
+{#                    {% endif %}#}
+{#                </td>#}
+{#                <td>{{ message.createdAt ? message.createdAt|date('Y-m-d H:i:s') : '' }}</td>#}
+{#                <td>{{ message.statusTbl }}</td>#}
+{#                <td>#}
+{#                    <a href="{{ path('app_message_show', {'id': message.id}) }}">show</a>#}
+{#                    <a href="{{ path('app_message_edit', {'id': message.id}) }}">edit</a>#}
+{#                </td>#}
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const tableBody = document.getElementById('prospectsTableBody');
+            const rows = tableBody.getElementsByTagName('tr');
+
+            searchInput.addEventListener('keyup', function() {
+                const searchTerm = searchInput.value.toLowerCase();
+
+                for (let i = 0; i < rows.length; i++) {
+                    const row = rows[i];
+                    const cells = row.getElementsByTagName('td');
+                    let found = false;
+
+                    for (let j = 0; j < cells.length; j++) {
+                        const cellText = cells[j].textContent.toLowerCase();
+                        if (cellText.indexOf(searchTerm) > -1) {
+                            found = true;
+                            break;
+                        }
+                    }
+
+                    if (found) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                }
+            });
+        });
+    </script>
+{% endblock %}

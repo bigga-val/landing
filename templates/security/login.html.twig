@@ -5,118 +5,127 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #ffffff;
+            background-color: #008080;
             display: flex;
             align-items: center;
             justify-content: center;
             height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
         }
         .login-container {
-            max-width: 400px;
-            width: 100%;
-            padding: 20px;
+            max-width: 500px;
+            width: 90%;
             background-color: #ffffff;
-            border-radius: 8px;
+            border-radius: 0px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
+        }
+        .login-header {
+            background-color: #333;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+        }
+        .login-header .icon {
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+        .login-header h4 {
+            margin: 0;
+            font-size: 1.2em;
+        }
+        .login-body {
+            padding: 40px 20px 20px;
         }
         .logo {
-            text-align: center;
-            margin-bottom: 20px;
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
         }
         .logo img {
             width: 70px;
-            height: 40px;
+            height: 70px;
+            border-radius: 50%;
+            background-color: white;
+            padding: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
-        .btn-continue {
-            background-color: #008080;
-            border-color: #008080;
+        .form-control {
+            border-right: none;
         }
-        .btn-continue:hover {
-            background-color: #008f5d;
-            border-color: #008f5d;
+        .input-group-text {
+            background-color: white;
+            border-left: none;
         }
-        .btn-social {
-            text-align: left;
-            padding-left: 50px;
-            position: relative;
-            margin-bottom: 10px;
+        .btn-connect {
+            background-color: #333;
+            color: white;
+            border: none;
         }
-        .btn-social img {
+        .btn-connect:hover {
+            background-color: #555;
+        }
+        .forgot-password {
+            color: #008080;
+            text-decoration: none;
+        }
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+        .close-btn {
             position: absolute;
-            left: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 24px;
-            height: 24px;
-        }
-        .divider {
-            display: flex;
-            align-items: center;
-            text-align: center;
-            margin: 20px 0;
-        }
-        .divider::before,
-        .divider::after {
-            content: '';
-            flex: 1;
-            border-bottom: 1px solid #ced4da;
-        }
-        .divider span {
-            padding: 0 10px;
+            top: 10px;
+            right: 10px;
+            font-size: 1.5em;
+            color: white;
+            cursor: pointer;
         }
     </style>
 {% endblock %}
 
 {% block body %}
     <div class="login-container">
+        <div class="login-header">
+            <i class="fas fa-sign-in-alt icon"></i>
+            <h4>Connexion</h4>
+            <span class="close-btn">&times;</span>
+        </div>
         <div class="logo">
-            <img src="{{ asset('images/logo-e.png') }}" alt="Logo">
+            <a href="{{ path('app_home') }}">
+                <img src="{{ asset('images/Logo e-login.png') }}" alt="Logo" class="img-fluid">
+            </a>
         </div>
-        <h4 class="text-center mb-4">Se Connecter</h4>
-        <form method="post">
-            {% if error %}
-                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-            {% endif %}
+        <div class="login-body mt-4">
+            <form method="post">
+                {% if error %}
+                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
 
-            {% if app.user %}
                 <div class="mb-3">
-                    Vous êtes connecté en tant que {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Se déconnecter</a>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        <input type="text" value="{{ last_username }}" name="_username" id="username" class="form-control" placeholder="Identifiant Admin (ID)" required autofocus>
+                    </div>
                 </div>
-            {% endif %}
+                <div class="mb-3">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                        <input type="password" name="_password" id="password" class="form-control" placeholder="Mot de passe" required>
+                        <span class="input-group-text"><i class="fas fa-eye"></i></span>
+                    </div>
+                </div>
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-            <div class="mb-3">
-                <label for="username" class="form-label">Nom d'utilisateur</label>
-                <div class="input-group">
-                    <input type="text" value="{{ last_username }}" name="_username" id="username" class="form-control" autocomplete="username" required autofocus>
-                    <button class="btn btn-outline-secondary" type="button">
-                        <i class="fas fa-user"></i> 
-                    </button>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <a href="#" class="forgot-password">Mot de passe oublié ?</a>
+                    <button type="submit" class="btn btn-connect">Se connecter</button>
                 </div>
-            </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">Mot de passe</label>
-                <div class="input-group">
-                    <input type="password" name="_password" id="password" class="form-control" autocomplete="current-password" aria-label="Mot de passe">
-                    <button class="btn btn-outline-secondary" type="button">
-                        <i class="fas fa-eye"></i>
-                    </button>
-                </div>
-            </div>
-            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-            
-            <div class="mb-3 text-end">
-                <a href="#" class="text-decoration-none" style="color: #008080;">Mot de passe oublié ?</a>
-            </div>
-            <div class="d-grid gap-2">
-                <button type="submit" class="btn btn-primary btn-continue">Continuer</button>
-            </div>
-        </form>
-        <div class="text-center mt-3">
-            <span>Vous n'avez pas de compte ? <a href="{{ path("app_register") }}" class="text-decoration-none" style="color: #008080;">S'inscrire</a></span>
-        </div>
-       
-        <div class="mt-4 text-center">
-            <a href="#" class="text-decoration-none me-3" style="color: #008080;">Conditions d'utilisation</a>
-            <a href="#" class="text-decoration-none" style="color: #008080;">Politique de confidentialité</a>
+            </form>
         </div>
     </div>
 {% endblock %}

@@ -6,9 +6,11 @@
     "app.js": "\/assets\/app-8e03e6dbe2f283051f848709251e9c4e.js",
     "bootstrap.js": "\/assets\/bootstrap-c423b8bbc1f9cae218c105ca8ca9f767.js",
     "controllers\/hello_controller.js": "\/assets\/controllers\/hello_controller-55882fcad241d2bea50276ea485583bc.js",
+    "images\/Logo e-login.png": "\/assets\/images\/Logo e-login-135299f611dc14ee1df3cef43e780ee2.png",
     "images\/background-image.png": "\/assets\/images\/background-image-3879f26619c037490f03b7baceafed7c.png",
     "images\/logo-e.png": "\/assets\/images\/logo-e-537a5afd4e643b52ded18394094f5404.png",
     "styles\/app.css": "\/assets\/styles\/app-713d9828d7058036a44786836080554c.css",
+    "styles\/home.css": "\/assets\/styles\/home-8bb1021684e9f7c30ac949ddbcc13e41.css",
     "styles\/main-style.css": "\/assets\/styles\/main-style-09d49d72898383dddfc008211b2410ee.css",
     "vendor\/@hotwired\/stimulus\/stimulus.index.js": "\/assets\/vendor\/@hotwired\/stimulus\/stimulus.index-b5b1d00e42695b8959b4a1e94e3bc92a.js",
     "vendor\/@hotwired\/turbo\/turbo.index.js": "\/assets\/vendor\/@hotwired\/turbo\/turbo.index-810f44ef1a202a441e4866b7a4c72d11.js"

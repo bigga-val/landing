@@ -7,6 +7,7 @@ use App\Form\ProspectType;
 use App\Repository\ProspectRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -35,6 +36,10 @@ final class ProspectController extends AbstractController{
             $entityManager->persist($prospect);
             $entityManager->flush();
 
+            if ($request->isXmlHttpRequest()) {
+                return new JsonResponse(['success' => true]);
+            }
+
             return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -43,7 +48,6 @@ final class ProspectController extends AbstractController{
             'form' => $form,
         ]);
     }
-
     #[Route('/newbyemail', name: 'app_prospect_new_email', methods: ['GET', 'POST'])]
     public function newbyemail(Request $request, EntityManagerInterface $entityManager): Response
     {

@@ -1,0 +1,151 @@
+:root {
+    --teal-color: #008080;
+    --teal-dark: #006666;
+}
+
+.text-highlight, .text-teal {
+    color: var(--teal-color);
+}
+
+.btn-teal {
+    background-color: var(--teal-color);
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    width: 200px; 
+}
+
+.btn-teal:hover {
+    background-color: var(--teal-dark);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-teal:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+.social-icons img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.main-content {
+    display: flex;
+    align-items: stretch;
+    min-height: calc(100vh - 76px - 60px);
+}
+
+.image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.background-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.large-title {
+    font-size: 2.6rem;
+    line-height: 1.2; 
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    padding: 5%;
+}
+
+.content-wrapper p {
+    text-align: justify;
+}
+
+.social-icon {
+    font-size: 24px;
+    color: #000000;
+    margin-right: 15px;
+}
+
+.whatsapp-container {
+    position: fixed;
+    bottom: 70px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.whatsapp-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    background-color: #25D366;
+    color: white;
+    border-radius: 50%;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.whatsapp-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.whatsapp-icon {
+    font-size: 36px; 
+    line-height: 1; 
+}
+
+.pulse {
+    animation: pulse-animation 2s infinite;
+}
+
+.highlight {
+    font-weight: bold;
+}
+
+.highlight a {
+    color: var(--teal-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.highlight a:hover {
+    color: var(--teal-dark);
+    text-decoration: underline;
+}
+
+@keyframes pulse-animation {
+    0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+}
+
+.navbar-brand img {
+    height: 30px;
+    margin-left: 0px;
+}

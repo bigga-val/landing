@@ -12,7 +12,7 @@
             display: flex;
             flex-direction: column;
         }
-        
+
         .custom-container {
             width: 90%;
             max-width: 900px;
@@ -122,10 +122,17 @@
             justify-content: center;
         }
         .logo {
-            max-width: 100px;
-            height: auto;
+            max-width: 80px;
+            height: 80px;
             display: block;
-            margin: 1rem auto;
+            margin: 0.4rem auto;
+            object-fit: cover;
+        }
+
+        .rounded-logo {
+            border-radius: 50%;
+            overflow: hidden;
+            background-color: white;
         }
         @media (max-width: 767px) {
             .custom-container {
@@ -135,24 +142,23 @@
         }
     </style>
 
-  <div class="main-content">
-        <img src="{{ asset("images/logo-e.png") }}" alt="ETAH Logo" class="logo mt-5">
+    <div class="main-content">
+        <img src="{{ asset('images/Logo e-login.png') }}" alt="ETAH Logo" class="logo mt-4 rounded-logo">
         <div class="custom-container">
             <div class="row g-0">
                 <div class="col-12 col-md-7 order-md-2">
                     <div class="form-section">
                         <h3>Envoyez un message</h3>
-
-                        
-                        <form>
+                        <form method="POST">
                             <div class="mb-3">
-                                <input type="text" class="form-control" placeholder="Entrez votre Nom *" required>
+                                <input type="hidden" name="token" value="{{ csrf_token('token-value') }}">
+                                <input type="text" name="nom" class="form-control" placeholder="Entrez votre Nom">
                             </div>
                             <div class="mb-3">
-                                <input type="email" class="form-control" placeholder="Entrez votre Adresse mail *" required>
+                                <input type="email" name="email" class="form-control" placeholder="Entrez votre Adresse mail">
                             </div>
                             <div class="mb-3">
-                                <textarea class="form-control" rows="4" placeholder="Entrez votre message *"></textarea>
+                                <textarea name="message" class="form-control" rows="4" placeholder="Entrez votre message"></textarea>
                             </div>
                             <button type="submit" class="btn btn-custom w-100">Envoyer</button>
                         </form>
