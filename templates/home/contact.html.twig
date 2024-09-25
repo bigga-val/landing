@@ -140,8 +140,38 @@
                 border-radius: 0;
             }
         }
-    </style>
+        .modal-content {
+            background-color: #2c2c2c;
+            color: #ffffff;
+            border: none;
+            border-radius: 10px;
+        }
 
+        .modal-title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .btn-primary {
+            background-color: #ffffff;
+            color: #2c2c2c;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 20px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #e0e0e0;
+            color: #2c2c2c;
+        }
+
+    </style>
     <div class="main-content">
         <img src="{{ asset('images/Logo e-login.png') }}" alt="ETAH Logo" class="logo mt-4 rounded-logo">
         <div class="custom-container">
@@ -149,16 +179,16 @@
                 <div class="col-12 col-md-7 order-md-2">
                     <div class="form-section">
                         <h3>Envoyez un message</h3>
-                        <form method="POST">
+                        <form id="contactForm">
+                            <input type="hidden" name="token" value="{{ csrf_token('token-value') }}">
                             <div class="mb-3">
-                                <input type="hidden" name="token" value="{{ csrf_token('token-value') }}">
-                                <input type="text" name="nom" class="form-control" placeholder="Entrez votre Nom">
+                                <input type="text" class="form-control" placeholder="Entrez votre Nom" name="nom" required>
                             </div>
                             <div class="mb-3">
-                                <input type="email" name="email" class="form-control" placeholder="Entrez votre Adresse mail">
+                                <input type="email" class="form-control" placeholder="Entrez votre Adresse mail" name="email" required>
                             </div>
                             <div class="mb-3">
-                                <textarea name="message" class="form-control" rows="4" placeholder="Entrez votre message"></textarea>
+                                <textarea class="form-control" rows="4" placeholder="Entrez votre message" name="message" required></textarea>
                             </div>
                             <button type="submit" class="btn btn-custom w-100">Envoyer</button>
                         </form>
@@ -186,4 +216,49 @@
     </div>
 
 
+    <!-- Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <h2 class="modal-title mb-4" id="successModalLabel">Message envoyé</h2>
+                    <p>Votre message a bien été envoyé. Nous reviendrons vers vous dans les plus brefs délais.</p>
+                    <button type="button" class="btn btn-primary mt-4" data-bs-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('contactForm');
+            const successModal = new bootstrap.Modal(document.getElementById('successModal'));
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                const formData = new FormData(form);
+
+                fetch('{{ path('app_contact') }}', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                    .then(response => response.text())
+                    .then(html => {
+                        successModal.show();
+                        form.reset();
+                    })
+                    .catch(error => {
+                        console.error('Erreur:', error);
+                    });
+            });
+
+            document.getElementById('successModal').addEventListener('hidden.bs.modal', function () {
+                document.body.classList.remove('modal-open');
+                document.querySelector('.modal-backdrop').remove();
+            });
+        });
+    </script>
 {% endblock %}
